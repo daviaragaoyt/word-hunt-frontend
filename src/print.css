@@ -1,0 +1,115 @@
+/* src/print.css */
+
+@page {
+    size: landscape; /* Orientação da página: Paisagem */
+    margin: 1cm;     /* Margem de 1cm em todas as bordas */
+}
+
+@media print {
+    /* 1. Esconde TUDO na página por padrão quando a impressão é ativada. */
+    body * {
+        visibility: hidden !important;
+        overflow: hidden !important;
+    }
+
+    /* 2. Torna visível APENAS a área de impressão do professor e seus filhos. */
+    #printable-area-professor,
+    #printable-area-professor * {
+        visibility: visible !important;
+        overflow: visible !important;
+        display: block !important;
+    }
+
+    /* 3. Estiliza o contêiner principal da área imprimível (#printable-area-professor)
+          AUMENTANDO A LARGURA PARA DAR MAIS ESPAÇO. */
+    #printable-area-professor {
+        position: absolute !important;
+        left: 50% !important;
+        top: 50% !important;
+        transform: translate(-50%, -50%) !important;
+        
+        /* Largura AUMENTADA para dar mais folga.
+           Vamos para 1100px. Pode ser um bom ponto entre 980px e 1200px. */
+        width: 1100px !important; /* LARGURA AUMENTADA AQUI */
+        max-width: 95vw !important; /* Garante que não exceda a largura da viewport de impressão */
+        
+        height: auto !important;
+        margin: 0 auto !important;
+        padding: 20px !important; /* Mantém o padding */
+        
+        border: 2px solid #333 !important;
+        border-radius: 8px !important;
+        background-color: #ffffff !important;
+        color: #000000 !important;
+        box-shadow: none !important;
+        box-sizing: border-box !important;
+    }
+
+    /* 4. Estilos para o contêiner interno da grade binária (a div com display: inline-block) */
+    #printable-area-professor > div[style*="inline-block"] {
+        display: block !important;
+        width: 100% !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        border: none !important;
+        background-color: transparent !important;
+    }
+
+    /* 5. Estilos para cada linha da grade binária (a div com display: flex) */
+    #printable-area-professor > div[style*="inline-block"] > div[style*="display: flex"] {
+        display: flex !important;
+        justify-content: space-between !important;
+        align-items: center !important;
+        margin-bottom: 5px !important;
+        flex-wrap: nowrap !important; /* CRUCIAL: Impede quebra de linha dos binários na mesma linha */
+    }
+
+    /* 6. Estilos para cada valor binário (o span dentro da linha)
+          Mantendo os paddings/margins compactos, mas dando uma margem de segurança no min-width. */
+    #printable-area-professor span {
+        font-family: var(--font-family-monospace) !important;
+        font-size: 16px !important;
+        line-height: 1 !important;
+        color: #000000 !important;
+        
+        /* Usar ch units para largura baseada na fonte, mas com um min-width um pouco maior em px para folga */
+        width: 9ch !important;
+        min-width: 95px !important; /* Um pouco mais de folga em pixels (9ch é ~86.4px) */
+        max-width: 95px !important; /* Define um limite para evitar que cresça demais */
+        
+        padding: 4px 6px !important;
+        margin: 1px !important;
+        
+        display: inline-block !important;
+        text-align: center !important;
+        box-sizing: border-box !important;
+        flex-shrink: 0 !important;
+        white-space: pre !important;
+
+        background-color: #eee !important;
+        border: 1px solid #ddd !important;
+        border-radius: 4px !important;
+        letter-spacing: normal !important;
+    }
+    
+    /* Outros estilos como h3, p e no-print permanecem os mesmos */
+    #printable-area-professor h3 {
+        color: #000000 !important;
+        font-size: 1.8em !important;
+        margin-bottom: 10px !important;
+        text-align: center !important;
+        text-transform: uppercase !important;
+    }
+
+    #printable-area-professor p {
+        color: #333 !important;
+        font-size: 1.3em !important;
+        margin-bottom: 25px !important;
+        text-align: center !important;
+        font-weight: bold !important;
+    }
+
+    .no-print {
+        display: none !important;
+    }
+}
