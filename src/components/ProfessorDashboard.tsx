@@ -16,7 +16,7 @@ const ProfessorDashboard: React.FC<ProfessorDashboardProps> = ({ onLogout }) => 
         try {
             setLoading(true);
             setError(null);
-            const response = await fetch('http://localhost:3001/api/words');
+            const response = await fetch('https://word-hunt-backend-api.onrender.com/api/words');
             if (!response.ok) {
                 throw new Error('Erro ao carregar palavras do backend.');
             }
@@ -42,7 +42,7 @@ const ProfessorDashboard: React.FC<ProfessorDashboardProps> = ({ onLogout }) => 
             .filter(word => word.length > 0);
 
         try {
-            const response = await fetch('http://localhost:3001/api/words', {
+            const response = await fetch('https://word-hunt-backend-api.onrender.com/api/words', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

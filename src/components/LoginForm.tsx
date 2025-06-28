@@ -15,7 +15,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ onLoginSuccess, onGoToRegister })
         e.preventDefault();
         setError('');
         try {
-            const response = await fetch('http://localhost:3001/api/login', {
+            const response = await fetch('https://word-hunt-backend-api.onrender.com/api/login', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
