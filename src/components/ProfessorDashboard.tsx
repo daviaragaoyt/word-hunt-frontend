@@ -101,8 +101,8 @@ const ProfessorDashboard: React.FC<ProfessorDashboardProps> = ({ onLogout }) => 
                 savedWords.length > 0 && (
                     <>
                         <div id="printable-area-professor" className="card-container" style={{ marginBottom: '20px' }}>
-                            <h3>Palavras escondidas:</h3>
-                            <p style={{ fontWeight: 'bold' }}>{savedWords.join(', ')}</p>
+
+
                             <WordBinaryGrid wordsToHide={savedWords} />
                         </div>
                         <button onClick={handlePrint} style={{ marginTop: 20 }} className="no-print">
